@@ -33,10 +33,14 @@
             color: blue;
         }
         .cross {
+            color: black;
+        }
+        .triangle {
             color: red;
         }
-        .star {
-            color: gold;
+        .separator {
+            margin: 0 10px;
+            color: black;
         }
     </style>
 </head>
@@ -45,15 +49,29 @@
         <div class="child sheng">
             <h2>昇昇</h2>
             <div>
-                <span class="icon">爸爸: <span id="dadSheng">0</span></span>
-                <span class="icon">媽媽: <span id="momSheng">0</span></span>
+                <span class="icon">爸爸: 
+                    <span id="dadShengIcon">⭕</span>
+                    <span id="dadShengScore">0</span>
+                </span>
+                <span class="separator">|</span>
+                <span class="icon">媽媽: 
+                    <span id="momShengIcon">▲</span>
+                    <span id="momShengScore">0</span>
+                </span>
             </div>
         </div>
         <div class="child qian">
             <h2>千千</h2>
             <div>
-                <span class="icon">爸爸: <span id="dadQian">0</span></span>
-                <span class="icon">媽媽: <span id="momQian">0</span></span>
+                <span class="icon">爸爸: 
+                    <span id="dadQianIcon">⭕</span>
+                    <span id="dadQianScore">0</span>
+                </span>
+                <span class="separator">|</span>
+                <span class="icon">媽媽: 
+                    <span id="momQianIcon">▲</span>
+                    <span id="momQianScore">0</span>
+                </span>
             </div>
         </div>
     </div>
@@ -66,10 +84,17 @@
                 momQian: 0
             };
 
-            document.getElementById('dadSheng').textContent = scores.dadSheng < 0 ? '❌' : '⭕';
-            document.getElementById('momSheng').textContent = scores.momSheng < 0 ? '❌' : '⭐';
-            document.getElementById('dadQian').textContent = scores.dadQian < 0 ? '❌' : '⭕';
-            document.getElementById('momQian').textContent = scores.momQian < 0 ? '❌' : '⭐';
+            // 更新昇昇的分數
+            document.getElementById('dadShengIcon').textContent = scores.dadSheng < 0 ? '❌' : '⭕';
+            document.getElementById('dadShengScore').textContent = scores.dadSheng;
+            document.getElementById('momShengIcon').textContent = scores.momSheng < 0 ? '❌' : '▲';
+            document.getElementById('momShengScore').textContent = scores.momSheng;
+
+            // 更新千千的分數
+            document.getElementById('dadQianIcon').textContent = scores.dadQian < 0 ? '❌' : '⭕';
+            document.getElementById('dadQianScore').textContent = scores.dadQian;
+            document.getElementById('momQianIcon').textContent = scores.momQian < 0 ? '❌' : '▲';
+            document.getElementById('momQianScore').textContent = scores.momQian;
         }
 
         updateScores();
