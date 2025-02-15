@@ -54,7 +54,7 @@
             cursor: pointer;
         }
         .logs {
-            margin-top极: 20px;
+            margin-top: 20px;
             padding: 10px;
             background-color: #f0f0f0;
             border-radius: 8px;
@@ -92,7 +92,7 @@
                 <button onclick="changeScore('momSheng', -1)">▲ -1</button>
             </div>
         </div>
-        <div class="child qian">
+        <极div class="child qian">
             <h2>千千</h2>
             <div>
                 <span class="icon">爸爸: 
@@ -107,7 +107,7 @@
             </div>
             <div class="buttons">
                 <button onclick="changeScore('dadQian', 1)">⭕ +1</button>
-                <button onclick="changeScore极('dadQian', -1)">⭕ -1</button>
+                <button onclick="changeScore('dadQian', -1)">⭕ -1</button>
                 <button onclick="changeScore('momQian', 1)">▲ +1</button>
                 <button onclick="changeScore('momQian', -1)">▲ -1</button>
             </div>
@@ -127,7 +127,7 @@
             };
 
             // 更新昇昇的分數
-            const dadShengIcon = document.getElementById('dad极ShengIcon');
+            const dadShengIcon = document.getElementById('dadShengIcon');
             dadShengIcon.textContent = scores.dadSheng < 0 ? '❌' : '⭕';
             dadShengIcon.className = scores.dadSheng < 0 ? 'cross' : 'circle';
             document.getElementById('dadShengScore').textContent = scores.dadSheng;
@@ -144,7 +144,7 @@
             document.getElementById('dadQianScore').textContent = scores.dadQian;
 
             const momQianIcon = document.getElementById('momQianIcon');
-            momQianIcon.textContent = scores.momQian < 0 ? '❌' : '▲';
+            momQianIcon.textContent = scores.momQian < 极0 ? '❌' : '▲';
             momQianIcon.className = scores.momQian < 0 ? 'cross' : 'triangle';
             document.getElementById('momQianScore').textContent = scores.momQian;
         }
@@ -154,6 +154,7 @@
             const logList = document.getElementById('logList');
             logList.innerHTML = logs
                 .slice(-10) // 只顯示最近10個 logs
+                .reverse() // 降序排列
                 .map(log => `<li>${log}</li>`)
                 .join('');
         }
