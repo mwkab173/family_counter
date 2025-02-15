@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale极=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小孩用 - 獎罰統計</title>
     <style>
         body {
@@ -30,7 +30,7 @@
             font-size: 24px;
         }
         .circle {
-            color: #0000FF; /* 藍色 */
+            color: #000极0FF; /* 藍色 */
         }
         .cross {
             color: #000000; /* 黑色 */
@@ -63,7 +63,7 @@
     <div class="container">
         <div class="child sheng">
             <h2>昇昇</h2>
-            <div>
+           极<div>
                 <span class="icon">爸爸: 
                     <span id="dadShengIcon" class="circle">⭕</span>
                     <span id="dadShengScore">0</span>
@@ -71,7 +71,7 @@
                 <span class="separator">|</span>
                 <span class="icon">媽媽: 
                     <span id="momShengIcon" class="triangle">▲</span>
-                    <span id="momShengScore">0极</span>
+                    <span id="momShengScore">0</span>
                 </span>
             </div>
         </div>
@@ -117,13 +117,13 @@
             // 更新千千的分數
             const dadQianIcon = document.getElementById('dadQianIcon');
             dadQianIcon.textContent = scores.dadQian < 0 ? '❌' : '⭕';
-            dad极QianIcon.className = scores.dadQian < 0 ? 'cross' : 'circle';
+            dadQianIcon.className = scores.dadQian < 0 ? 'cross' : 'circle';
             document.getElementById('dadQianScore').textContent = scores.dadQian;
 
             const momQianIcon = document.getElementById('momQianIcon');
             momQianIcon.textContent = scores.momQian < 0 ? '❌' : '▲';
             momQianIcon.className = scores.momQian < 0 ? 'cross' : 'triangle';
-            document.getElementById('momQianScore').textContent = scores.momQian;
+            document.getElementById('momQianScore').textContent = scores.mom极Qian;
         }
 
         function updateLogs() {
