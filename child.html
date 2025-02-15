@@ -8,6 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
+            color: #000000; /* 文字改為黑色 */
         }
         .container {
             display: flex;
@@ -17,7 +18,7 @@
         .child {
             padding: 15px;
             border-radius: 8px;
-            color: black;
+            color: white;
             text-align: center;
         }
         .sheng {
@@ -41,6 +42,21 @@
         .separator {
             margin: 0 10px;
             color: #000000; /* 黑色 */
+        }
+        .logs {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .logs h3 {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .logs ul {
+            margin: 0;
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -73,6 +89,10 @@
                     <span id="momQianScore">0</span>
                 </span>
             </div>
+        </div>
+        <div class="logs">
+            <h3>最近10個 logs:</h3>
+            <ul id="logList"></ul>
         </div>
     </div>
     <script>
@@ -107,8 +127,21 @@
             document.getElementById('momQianScore').textContent = scores.momQian;
         }
 
+        function updateLogs() {
+            const logs = JSON.parse(localStorage.getItem('logs')) || [];
+            const logList = document.getElementById('logList');
+            logList.innerHTML = logs
+                .slice(-10) // 只顯示最近10個 logs
+                .map(log => `<li>${log}</li>`)
+                .join('');
+        }
+
         updateScores();
-        setInterval(updateScores, 1000); // 每秒更新一次
+        updateLogs();
+        setInterval(() => {
+            updateScores();
+            updateLogs();
+        }, 1000); // 每秒更新一次
     </script>
 </body>
 </html>
