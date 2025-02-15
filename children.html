@@ -48,7 +48,6 @@
 
     <script>
         function loadScores() {
-            // 確保從 localStorage 讀取數值
             const sengDadScore = localStorage.getItem('sengDadScore') || 0;
             const sengMomScore = localStorage.getItem('sengMomScore') || 0;
             const chienDadScore = localStorage.getItem('chienDadScore') || 0;
@@ -63,7 +62,6 @@
         }
 
         function updateIcons() {
-            // 更新圖標
             let dadScoreSeng = parseInt(document.getElementById('dadScoreValueSeng').innerText);
             let momScoreSeng = parseInt(document.getElementById('momScoreValueSeng').innerText);
             document.getElementById('dadIconSeng').innerText = dadScoreSeng < 0 ? '✖️' : '⬤';
@@ -73,6 +71,14 @@
             let momScoreChien = parseInt(document.getElementById('momScoreValueChien').innerText);
             document.getElementById('dadIconChien').innerText = dadScoreChien < 0 ? '✖️' : '⬤';
             document.getElementById('momIconChien').innerText = momScoreChien < 0 ? '✖️' : '▲';
+        }
+
+        function changeScore(scoreId, delta) {
+            let scoreElement = document.getElementById(scoreId);
+            let newScore = parseInt(scoreElement.innerText) + delta;
+            scoreElement.innerText = newScore;
+            localStorage.setItem(scoreId, newScore); // 儲存分數
+            updateIcons();
         }
 
         loadScores(); // 載入分數
