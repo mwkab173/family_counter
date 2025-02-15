@@ -18,8 +18,7 @@
         .child {
             padding: 15px;
             border-radius: 8px;
-            color: white;
-            text-align: center;
+            text-align: center; /* 刪除 color: white; */
         }
         .sheng {
             background-color: #87CEEB; /* 粉藍色 */
@@ -57,12 +56,12 @@
         .logs {
             margin-top: 20px;
             padding: 10px;
-            background-color: #f0f0f0;
+            background-color: #f极0f0f0;
             border-radius: 8px;
             text-align: left;
         }
         .logs h3 {
-            margin: 0;
+            margin: 极0;
             margin-bottom: 10px;
         }
         .logs ul {
@@ -110,7 +109,7 @@
             </div>
         </div>
         <div class="logs">
-            <h3>最近10個 logs:</h3>
+            <h3>最近記錄:</h3>
             <ul id="logList"></ul>
         </div>
     </div>
@@ -169,7 +168,7 @@
             const logs = JSON.parse(localStorage.getItem('logs')) || [];
             const action = key.includes('dad') ? '⭕' : '▲';
             const child = key.includes('Sheng') ? '昇昇' : '千千';
-            const log = `${new Date().toLocaleString()} - ${action} ${child}: ${value > 0 ? '+' : ''}${value}`;
+            const log = `${new Date().toLocaleString()} - 媽媽 ${action} ${child}: ${value > 0 ? '+' : ''}${value}`;
             logs.push(log);
             localStorage.setItem('logs', JSON.stringify(logs));
 
