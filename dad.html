@@ -1,55 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>爸爸獎罰分數管理</title>
+    <title>爸爸用 - 獎罰統計</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
             padding: 20px;
         }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .child {
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+        .sheng {
+            background-color: #87CEEB; /* 粉藍色 */
+        }
+        .qian {
+            background-color: #FFB6C1; /* 粉紅色 */
+        }
+        .icon {
+            font-size: 24px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
         button {
-            margin: 5px;
-            padding: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <h1>爸爸獎罰分數管理</h1>
-    <h2>昇昇的分數</h2>
-    <div>爸爸: <span id="dadScoreValueSeng">0</span></div>
-    <div>媽媽: <span id="momScoreValueSeng">0</span></div>
-    <button onclick="changeScore('sengDadScore', 1)">昇昇爸爸 +1</button>
-    <button onclick="changeScore('sengDadScore', -1)">昇昇爸爸 -1</button>
-    <button onclick="changeScore('sengMomScore', 1)">昇昇媽媽 +1</button>
-    <button onclick="changeScore('sengMomScore', -1)">昇昇媽媽 -1</button>
-
-    <h2>千千的分數</h2>
-    <div>爸爸: <span id="dadScoreValueChien">0</span></div>
-    <div>媽媽: <span id="momScoreValueChien">0</span></div>
-    <button onclick="changeScore('chienDadScore', 1)">千千爸爸 +1</button>
-    <button onclick="changeScore('chienDadScore', -1)">千千爸爸 -1</button>
-    <button onclick="changeScore('chienMomScore', 1)">千千媽媽 +1</button>
-    <button onclick="changeScore('chienMomScore', -1)">千千媽媽 -1</button>
-
+    <div class="container">
+        <div class="child sheng">
+            <h2>昇昇</h2>
+            <div>
+                <span class="icon">爸爸: <span id="dadSheng">0</span></span>
+                <span class="icon">媽媽: <span id="momSheng">0</span></span>
+            </div>
+            <div class="buttons">
+                <button onclick="changeScore('dadSheng', 1)">+1</button>
+                <button onclick="changeScore('dadSheng', -1)">-1</button>
+            </div>
+        </div>
+        <div class="child qian">
+            <h2>千千</h2>
+            <div>
+                <span class="icon">爸爸: <span id="dadQian">0</span></span>
+                <span class="icon">媽媽: <span id="momQian">0</span></span>
+            </div>
+            <div class="buttons">
+                <button onclick="changeScore('dadQian', 1)">+1</button>
+                <button onclick="changeScore('dadQian', -1)">-1</button>
+            </div>
+        </div>
+    </div>
     <script>
-        function loadScores() {
-            document.getElementById('dadScoreValueSeng').innerText = localStorage.getItem('sengDadScore') || 0;
-            document.getElementById('momScoreValueSeng').innerText = localStorage.getItem('sengMomScore') || 0;
-            document.getElementById('dadScoreValueChien').innerText = localStorage.getItem('chienDadScore') || 0;
-            document.getElementById('momScoreValueChien').innerText = localStorage.getItem('chienMomScore') || 0;
+        function updateScores() {
+            const scores = JSON.parse(localStorage.getItem('scores')) || {
+                dadSheng: 0,
+                momSheng: 0,
+                dadQian: 0,
+                momQian: 0
+            };
+
+            document.getElementById('dadSheng').textContent = scores.dadSheng;
+            document.getElementById('momSheng').textContent = scores.momSheng;
+            document.getElementById('dadQian').textContent = scores.dadQian;
+            document.getElementById('momQian').textContent = scores.momQian;
         }
 
-        function changeScore(scoreId, delta) {
-            let scoreElement = document.getElementById(scoreId.includes('Seng') ? 'dadScoreValueSeng' : 'dadScoreValueChien');
-            let newScore = parseInt(scoreElement.innerText) + delta;
-            scoreElement.innerText = newScore;
-            localStorage.setItem(scoreId, newScore);
+        function changeScore(key, value) {
+            const scores = JSON.parse(localStorage.getItem('scores')) || {
+                dadSheng: 0,
+                momSheng: 0,
+                dadQian: 0,
+                momQian: 0
+            };
+            scores[key] += value;
+            localStorage.setItem('scores', JSON.stringify(scores));
+            updateScores();
         }
 
-        loadScores();
+        updateScores();
     </script>
 </body>
 </html>
