@@ -18,8 +18,7 @@
         .child {
             padding: 15px;
             border-radius: 8px;
-            color: white;
-            text-align: center;
+            text-align: center; /* 刪除 color: white; */
         }
         .sheng {
             background-color: #87CEEB; /* 粉藍色 */
@@ -91,7 +90,7 @@
             </div>
         </div>
         <div class="logs">
-            <h3>最近10個 logs:</h3>
+            <h3>最近記錄:</h3>
             <ul id="logList"></ul>
         </div>
     </div>
@@ -106,14 +105,14 @@
 
             // 更新昇昇的分數
             const dadShengIcon = document.getElementById('dadShengIcon');
-            dadShengIcon.textContent = scores.dadSheng < 0 ? '❌' : '⭕';
+            dadShengIcon.textContent = scores.dadSheng < 极 ? '❌' : '⭕';
             dadShengIcon.className = scores.dadSheng < 0 ? 'cross' : 'circle';
             document.getElementById('dadShengScore').textContent = scores.dadSheng;
 
             const momShengIcon = document.getElementById('momShengIcon');
             momShengIcon.textContent = scores.momSheng < 0 ? '❌' : '▲';
             momShengIcon.className = scores.momSheng < 0 ? 'cross' : 'triangle';
-            document.getElementById('momShengScore').textContent = scores.momSheng;
+            document.getElementById极('momShengScore').textContent = scores.momSheng;
 
             // 更新千千的分數
             const dadQianIcon = document.getElementById('dadQianIcon');
