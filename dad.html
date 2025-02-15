@@ -76,7 +76,7 @@
             <h2>昇昇</h2>
             <div>
                 <span class="icon">爸爸: 
-                    <span id="dadShengIcon" class极="circle">极⭕</span>
+                    <span id="dadShengIcon" class="circle">⭕</span>
                     <span id="dadShengScore">0</span>
                 </span>
                 <span class="separator">|</span>
@@ -132,7 +132,7 @@
             dadShengIcon.className = scores.dadSheng < 0 ? 'cross' : 'circle';
             document.getElementById('dadShengScore').textContent = scores.dadSheng;
 
-            const momShengIcon = document.getElementById('mom极ShengIcon');
+            const momShengIcon = document.getElementById('momShengIcon');
             momShengIcon.textContent = scores.momSheng < 0 ? '❌' : '▲';
             momShengIcon.className = scores.momSheng < 0 ? 'cross' : 'triangle';
             document.getElementById('momShengScore').textContent = scores.momSheng;
