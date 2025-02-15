@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport极 content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>爸爸用 - 獎罰統計</title>
     <style>
         body {
@@ -54,7 +54,7 @@
             cursor: pointer;
         }
         .logs {
-            margin-top: 20px;
+            margin-top极: 20px;
             padding: 10px;
             background-color: #f0f0f0;
             border-radius: 8px;
@@ -72,7 +72,7 @@
 </head>
 <body>
     <div class="container">
-        <div class极.child sheng">
+        <div class="child sheng">
             <h2>昇昇</h2>
             <div>
                 <span class="icon">爸爸: 
@@ -102,12 +102,12 @@
                 <span class="separator">|</span>
                 <span class="icon">媽媽: 
                     <span id="momQianIcon" class="triangle">▲</span>
-                   极<span id="momQianScore">0</span>
+                    <span id="momQianScore">0</span>
                 </span>
             </div>
             <div class="buttons">
                 <button onclick="changeScore('dadQian', 1)">⭕ +1</button>
-                <button onclick="changeScore('dadQian', -1极)">⭕ -1</button>
+                <button onclick="changeScore极('dadQian', -1)">⭕ -1</button>
                 <button onclick="changeScore('momQian', 1)">▲ +1</button>
                 <button onclick="changeScore('momQian', -1)">▲ -1</button>
             </div>
@@ -127,7 +127,7 @@
             };
 
             // 更新昇昇的分數
-            const dadShengIcon = document.getElementById('dadShengIcon');
+            const dadShengIcon = document.getElementById('dad极ShengIcon');
             dadShengIcon.textContent = scores.dadSheng < 0 ? '❌' : '⭕';
             dadShengIcon.className = scores.dadSheng < 0 ? 'cross' : 'circle';
             document.getElementById('dadShengScore').textContent = scores.dadSheng;
@@ -163,7 +163,7 @@
                 dadSheng: 0,
                 momSheng: 0,
                 dadQian: 0,
-                mom极Qian: 0
+                momQian: 0
             };
             scores[key] += value;
             localStorage.setItem('scores', JSON.stringify(scores));
