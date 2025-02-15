@@ -16,72 +16,40 @@
             border-radius: 5px;
             display: block;
         }
-        .seng {
-            background-color: #add8e6; /* 粉藍色 */
-        }
-        .chien {
-            background-color: #ffcccb; /* 粉紅色 */
-        }
-        .score {
-            font-size: 24px;
-        }
-        .red-circle {
-            color: red;
-        }
-        .orange-triangle {
-            color: orange;
-        }
+        .seng { background-color: #add8e6; }
+        .chien { background-color: #ffcccb; }
+        .score { font-size: 24px; }
     </style>
 </head>
 <body>
     <h1>獎罰分數統計</h1>
     <div class="tab seng">
         <h2>昇昇的分數</h2>
-        <div class="score" id="dadScoreSeng">爸爸: <span id="dadScoreValueSeng">0</span> <span id="dadIconSeng" class="red-circle">⬤</span></div>
-        <div class="score" id="momScoreSeng">媽媽: <span id="momScoreValueSeng">0</span> <span id="momIconSeng" class="orange-triangle">▲</span></div>
+        <div class="score">爸爸: <span id="dadScoreValueSeng">0</span></div>
+        <div class="score">媽媽: <span id="momScoreValueSeng">0</span></div>
     </div>
     <div class="tab chien">
         <h2>千千的分數</h2>
-        <div class="score" id="dadScoreChien">爸爸: <span id="dadScoreValueChien">0</span> <span id="dadIconChien" class="red-circle">⬤</span></div>
-        <div class="score" id="momScoreChien">媽媽: <span id="momScoreValueChien">0</span> <span id="momIconChien" class="orange-triangle">▲</span></div>
+        <div class="score">爸爸: <span id="dadScoreValueChien">0</span></div>
+        <div class="score">媽媽: <span id="momScoreValueChien">0</span></div>
     </div>
 
     <script>
         function loadScores() {
-            const sengDadScore = localStorage.getItem('sengDadScore') || 0;
-            const sengMomScore = localStorage.getItem('sengMomScore') || 0;
-            const chienDadScore = localStorage.getItem('chienDadScore') || 0;
-            const chienMomScore = localStorage.getItem('chienMomScore') || 0;
-
-            document.getElementById('dadScoreValueSeng').innerText = sengDadScore;
-            document.getElementById('momScoreValueSeng').innerText = sengMomScore;
-            document.getElementById('dadScoreValueChien').innerText = chienDadScore;
-            document.getElementById('momScoreValueChien').innerText = chienMomScore;
-
-            updateIcons();
-        }
-
-        function updateIcons() {
-            let dadScoreSeng = parseInt(document.getElementById('dadScoreValueSeng').innerText);
-            let momScoreSeng = parseInt(document.getElementById('momScoreValueSeng').innerText);
-            document.getElementById('dadIconSeng').innerText = dadScoreSeng < 0 ? '✖️' : '⬤';
-            document.getElementById('momIconSeng').innerText = momScoreSeng < 0 ? '✖️' : '▲';
-
-            let dadScoreChien = parseInt(document.getElementById('dadScoreValueChien').innerText);
-            let momScoreChien = parseInt(document.getElementById('momScoreValueChien').innerText);
-            document.getElementById('dadIconChien').innerText = dadScoreChien < 0 ? '✖️' : '⬤';
-            document.getElementById('momIconChien').innerText = momScoreChien < 0 ? '✖️' : '▲';
+            document.getElementById('dadScoreValueSeng').innerText = localStorage.getItem('sengDadScore') || 0;
+            document.getElementById('momScoreValueSeng').innerText = localStorage.getItem('sengMomScore') || 0;
+            document.getElementById('dadScoreValueChien').innerText = localStorage.getItem('chienDadScore') || 0;
+            document.getElementById('momScoreValueChien').innerText = localStorage.getItem('chienMomScore') || 0;
         }
 
         function changeScore(scoreId, delta) {
             let scoreElement = document.getElementById(scoreId);
             let newScore = parseInt(scoreElement.innerText) + delta;
             scoreElement.innerText = newScore;
-            localStorage.setItem(scoreId, newScore); // 儲存分數
-            updateIcons();
+            localStorage.setItem(scoreId, newScore);
         }
 
-        loadScores(); // 載入分數
+        loadScores();
     </script>
 </body>
 </html>
