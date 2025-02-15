@@ -29,6 +29,19 @@
         .icon {
             font-size: 24px;
         }
+        .circle {
+            color: #0000FF; /* 藍色 */
+        }
+        .cross {
+            color: #000000; /* 黑色 */
+        }
+        .triangle {
+            color: #FF0000; /* 紅色 */
+        }
+        .separator {
+            margin: 0 10px;
+            color: #000000; /* 黑色 */
+        }
         .buttons {
             display: flex;
             gap: 10px;
@@ -47,23 +60,37 @@
         <div class="child sheng">
             <h2>昇昇</h2>
             <div>
-                <span class="icon">爸爸: <span id="dadSheng">0</span></span>
-                <span class="icon">媽媽: <span id="momSheng">0</span></span>
+                <span class="icon">爸爸: 
+                    <span id="dadShengIcon" class="circle">⭕</span>
+                    <span id="dadShengScore">0</span>
+                </span>
+                <span class="separator">|</span>
+                <span class="icon">媽媽: 
+                    <span id="momShengIcon" class="triangle">▲</span>
+                    <span id="momShengScore">0</span>
+                </span>
             </div>
             <div class="buttons">
-                <button onclick="changeScore('momSheng', 1)">+1</button>
-                <button onclick="changeScore('momSheng', -1)">-1</button>
+                <button onclick="changeScore('momSheng', 1)">媽媽 +1</button>
+                <button onclick="changeScore('momSheng', -1)">媽媽 -1</button>
             </div>
         </div>
         <div class="child qian">
             <h2>千千</h2>
             <div>
-                <span class="icon">爸爸: <span id="dadQian">0</span></span>
-                <span class="icon">媽媽: <span id="momQian">0</span></span>
+                <span class="icon">爸爸: 
+                    <span id="dadQianIcon" class="circle">⭕</span>
+                    <span id="dadQianScore">0</span>
+                </span>
+                <span class="separator">|</span>
+                <span class="icon">媽媽: 
+                    <span id="momQianIcon" class="triangle">▲</span>
+                    <span id="momQianScore">0</span>
+                </span>
             </div>
             <div class="buttons">
-                <button onclick="changeScore('momQian', 1)">+1</button>
-                <button onclick="changeScore('momQian', -1)">-1</button>
+                <button onclick="changeScore('momQian', 1)">媽媽 +1</button>
+                <button onclick="changeScore('momQian', -1)">媽媽 -1</button>
             </div>
         </div>
     </div>
@@ -76,10 +103,27 @@
                 momQian: 0
             };
 
-            document.getElementById('dadSheng').textContent = scores.dadSheng;
-            document.getElementById('momSheng').textContent = scores.momSheng;
-            document.getElementById('dadQian').textContent = scores.dadQian;
-            document.getElementById('momQian').textContent = scores.momQian;
+            // 更新昇昇的分數
+            const dadShengIcon = document.getElementById('dadShengIcon');
+            dadShengIcon.textContent = scores.dadSheng < 0 ? '❌' : '⭕';
+            dadShengIcon.className = scores.dadSheng < 0 ? 'cross' : 'circle';
+            document.getElementById('dadShengScore').textContent = scores.dadSheng;
+
+            const momShengIcon = document.getElementById('momShengIcon');
+            momShengIcon.textContent = scores.momSheng < 0 ? '❌' : '▲';
+            momShengIcon.className = scores.momSheng < 0 ? 'cross' : 'triangle';
+            document.getElementById('momShengScore').textContent = scores.momSheng;
+
+            // 更新千千的分數
+            const dadQianIcon = document.getElementById('dadQianIcon');
+            dadQianIcon.textContent = scores.dadQian < 0 ? '❌' : '⭕';
+            dadQianIcon.className = scores.dadQian < 0 ? 'cross' : 'circle';
+            document.getElementById('dadQianScore').textContent = scores.dadQian;
+
+            const momQianIcon = document.getElementById('momQianIcon');
+            momQianIcon.textContent = scores.momQian < 0 ? '❌' : '▲';
+            momQianIcon.className = scores.momQian < 0 ? 'cross' : 'triangle';
+            document.getElementById('momQianScore').textContent = scores.momQian;
         }
 
         function changeScore(key, value) {
