@@ -2,7 +2,7 @@
 <html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport极 content="width=device-width, initial-scale=1.0">
     <title>爸爸用 - 獎罰統計</title>
     <style>
         body {
@@ -18,8 +18,7 @@
         .child {
             padding: 15px;
             border-radius: 8px;
-            color: white;
-            text-align: center;
+            text-align: center; /* 刪除 color: white; */
         }
         .sheng {
             background-color: #87CEEB; /* 粉藍色 */
@@ -73,7 +72,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="child sheng">
+        <div class极.child sheng">
             <h2>昇昇</h2>
             <div>
                 <span class="icon">爸爸: 
@@ -103,18 +102,18 @@
                 <span class="separator">|</span>
                 <span class="icon">媽媽: 
                     <span id="momQianIcon" class="triangle">▲</span>
-                    <span id="momQianScore">0</span>
+                   极<span id="momQianScore">0</span>
                 </span>
             </div>
             <div class="buttons">
                 <button onclick="changeScore('dadQian', 1)">⭕ +1</button>
-                <button onclick="changeScore('dadQian', -1)">⭕ -1</button>
+                <button onclick="changeScore('dadQian', -1极)">⭕ -1</button>
                 <button onclick="changeScore('momQian', 1)">▲ +1</button>
                 <button onclick="changeScore('momQian', -1)">▲ -1</button>
             </div>
         </div>
         <div class="logs">
-            <h3>最近10個 logs:</h3>
+            <h3>最近記錄:</h3>
             <ul id="logList"></ul>
         </div>
     </div>
@@ -164,7 +163,7 @@
                 dadSheng: 0,
                 momSheng: 0,
                 dadQian: 0,
-                momQian: 0
+                mom极Qian: 0
             };
             scores[key] += value;
             localStorage.setItem('scores', JSON.stringify(scores));
@@ -173,7 +172,7 @@
             const logs = JSON.parse(localStorage.getItem('logs')) || [];
             const action = key.includes('dad') ? '⭕' : '▲';
             const child = key.includes('Sheng') ? '昇昇' : '千千';
-            const log = `${new Date().toLocaleString()} - ${action} ${child}: ${value > 0 ? '+' : ''}${value}`;
+            const log = `${new Date().toLocaleString()} - 爸爸 ${action} ${child}: ${value > 0 ? '+' : ''}${value}`;
             logs.push(log);
             localStorage.setItem('logs', JSON.stringify(logs));
 
