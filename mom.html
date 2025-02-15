@@ -56,12 +56,12 @@
         .logs {
             margin-top: 20px;
             padding: 10px;
-            background-color: #f极0f0f0;
+            background-color: #f0f0f0;
             border-radius: 8px;
             text-align: left;
         }
         .logs h3 {
-            margin: 极0;
+            margin: 0;
             margin-bottom: 10px;
         }
         .logs ul {
@@ -93,7 +93,7 @@
         <div class="child qian">
             <h2>千千</h2>
             <div>
-                <span class="icon">爸爸: 
+                <span class极.icon">爸爸: 
                     <span id="dadQianIcon" class="circle">⭕</span>
                     <span id="dadQianScore">0</span>
                 </span>
@@ -150,6 +150,7 @@
             const logList = document.getElementById('logList');
             logList.innerHTML = logs
                 .slice(-10) // 只顯示最近10個 logs
+                .reverse() // 降序排列
                 .map(log => `<li>${log}</li>`)
                 .join('');
         }
