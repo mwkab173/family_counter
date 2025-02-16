@@ -1,0 +1,72 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
+const dataFilePath = path.join(__dirname, 'data.txt');
+
+// 初始化數據文件（如果不存在）
+if (!fs.existsSync(dataFilePath)) {
+    fs.writeFileSync(dataFilePath, JSON.stringify({
+        dadSheng: 0,
+        momSheng: 0,
+        dadQian: 0,
+        momQian: 0,
+        logs: [],
+    }));
+}
+
+// 讀取數據
+function readData() {
+    const fileContent = fs.readFileSync(dataFilePath, 'utf8');
+    return JSON.parse(fileContent);
+}
+
+// 寫入數據
+function writeData(data) {
+    fs.writeFileSync(dataFilePath, JSON.stringify(data));
+}
+
+// 獲取分數
+app.get('/api/scores', (req, res) => {
+    const data = readData();
+    res.json({
+        dadSheng: data.dadSheng,
+        momSheng: data.momSheng,
+        dadQian: data.dadQian,
+        momQian: data.momQian,
+    });
+});
+
+// 更新分數
+app.post('/api/update-score', (req, res) => {
+    const { key, value, user } = req.body;
+    const data = readData();
+    data[key] += value;
+
+    // 記錄 log
+    const action = key.includes('dad') ? '⭕' : '▲';
+    const child = key.includes('Sheng') ? '昇昇' : '千千';
+    const log = `${new Date().toLocaleString()} - ${user} ${action} ${child}: ${value > 0 ? '+' : ''}${value}`;
+    data.logs.push(log);
+
+    writeData(data);
+    res.json({ success: true });
+});
+
+// 獲取 logs
+app.get('/api/logs', (req, res) => {
+    const data = readData();
+    res.json(data.logs.slice(-10).reverse()); // 只返回最近 10 條記錄，並降序排列
+});
+
+// 啟動服務器
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
