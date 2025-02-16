@@ -16,7 +16,7 @@ if (!fs.existsSync(dataFilePath)) {
         dadSheng: 0,
         momSheng: 0,
         dadQian: 0,
-        momQian: 0,
+        mom极Qian: 0,
         logs: [],
     }));
 }
